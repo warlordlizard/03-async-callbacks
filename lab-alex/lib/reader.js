@@ -2,11 +2,22 @@
 
 const fs = require('fs');
 const read = module.exports = function(paths, callback) {
-  paths.forEach(file => {
-    fs.readFile(file, (err, data) => {
+  var result = [];
+
+  
+  fs.readFile(paths[0], (err, data) => {
+    if (err) return callback (err);
+    result.push(data.toString('hex', 0, 8));
+    fs.readFile(paths[1], (err, data) => {
       if (err) throw err;
-      // console.log(data.toString().split(' ').slice(0, 8).join(' '));    
-      return callback(null, data.toString());
+      result.push(data.toString('hex', 0, 8));
+      fs.readFile(paths[2], (err, data) => {
+        if (err) throw err;
+        result.push(data.toString('hex', 0, 8));
+        console.log('results:', result);
+
+        callback(null, result);
+      });
     });
   });
 };
