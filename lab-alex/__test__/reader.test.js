@@ -18,7 +18,7 @@ describe('File Reader Module', function() {
       this.paths = [
         `${__dirname}/../data/one.txt`,
         `${__dirname}/../data/two.txt`,
-        `${__dirname}/../data/three.txt`
+        `${__dirname}/../data/three.txt`,
       ];
       done();
     });
